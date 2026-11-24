@@ -105,21 +105,26 @@
   gap: 14px;
 }
 
+/* The portrait. Used at four sizes: header, statements, contact button and
+   contact card. The lavender matches the photo's backdrop while it loads. */
 .avatar {
-  display: flex;
+  position: relative;
+  display: block;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
   width: 48px;
   height: 48px;
+  overflow: hidden;
   border-radius: 16px;
-  background: var(--bg-inverse) center / cover no-repeat;
-  color: var(--fg-inverse);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  user-select: none;
+  background: #a9b1de url("../assets/avatar.webp") center / cover no-repeat;
+}
+
+/* Hairline so the photo has an edge on both light and dark pages. */
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--ring);
 }
 
 .avatar--hero {
@@ -251,7 +256,6 @@ html:not(.js) .theme-toggle {
     width: 56px;
     height: 56px;
     border-radius: 18px;
-    font-size: 21px;
   }
 
   .intro {
@@ -648,7 +652,6 @@ a.tile:hover .tile__link .icon {
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  font-size: 11px;
 }
 
 .quote__by b {

@@ -28,7 +28,6 @@ Observed on the reference:
 
 | Reference | Here | Reason |
 | --- | --- | --- |
-| Portrait photo | "rh" monogram tile | No photo of Rahmat is in the project yet |
 | Edge-to-edge carousel of screenshot tiles | One project at a time inside the text column, with a strip of ten thumbnails to pick from | Rahmat asked for a layout less like the reference; a grid was tried and dropped |
 | Speaking photos and list | "What I do" rows | Rahmat's six service areas, including digital marketing (Meta Ads) |
 | Testimonials | "What I believe" (his own two statements) | No real testimonials; none invented |
@@ -41,6 +40,7 @@ Observed on the reference:
 
 - `index.html`: all content. Interface icons are an inline SVG sprite (Lucide).
 - `assets/work/`: ten project screenshots supplied by Rahmat, cropped and resized to 960 × 533 WebP.
+- `assets/avatar.webp`: Rahmat's portrait, cropped square from the photo he supplied (264 × 264).
 - `assets/tools/`: fifteen tool logos from the Iconify "logos" set (CC0), saved locally.
 - `css/tokens.css`: colours, type sizes, shadows, easings, for light and dark.
 - `css/base.css`: reset, focus ring, rise-in and scroll-reveal motion.
@@ -68,11 +68,6 @@ system setting through a media query.
 `assets/data/contributions.json`. `js/contributions.js` draws the latest 40
 weeks from that file. It is a snapshot, so the page says "as of" the last day
 in it; run `npm run contributions` and commit the file to refresh it.
-
-## Open items
-
-- Add a portrait: put `assets/avatar.jpg` in place and set it as the
-  `background-image` of the three `.avatar` elements.
 
 ## Earlier versions
 
