@@ -32,7 +32,8 @@ Observed on the reference:
 | Edge-to-edge carousel of screenshot tiles | One project at a time inside the text column, with a strip of ten thumbnails to pick from | Rahmat asked for a layout less like the reference; a grid was tried and dropped |
 | Speaking photos and list | "What I do" rows | Rahmat's six service areas, including digital marketing (Meta Ads) |
 | Testimonials | "What I believe" (his own two statements) | No real testimonials; none invented |
-| YouTube grid, contribution graph | Left out | No such content or verified data |
+| YouTube grid | Left out | No such content |
+| Contribution graph in orange | Same idea in blue, drawn from a saved snapshot | See "Activity on GitHub" below |
 | "Available for new work" | "Currently at Thuuba Digital" | Availability was never stated |
 | Contact form | `mailto:` button | No backend |
 
@@ -45,7 +46,7 @@ Observed on the reference:
 - `css/base.css`: reset, focus ring, rise-in and scroll-reveal motion.
 - `css/sections.css`: page grid, hero, work showcase, rows, statements, tools, footer.
 - `css/contact.css`: the contact dock.
-- `js/showcase.js`, `quotes.js`, `email-copy.js`, `contact.js`, `reveal.js`, `theme.js`: one
+- `js/showcase.js`, `contributions.js`, `quotes.js`, `email-copy.js`, `contact.js`, `reveal.js`, `theme.js`: one
   small module per behaviour, started from `js/main.js`.
 
 The page is complete without JavaScript: both statements list out and "email"
@@ -59,6 +60,14 @@ Not on the reference; added on request. A small script in `<head>` sets
 key `theme`), or from the system setting when nothing is saved. The button in
 the header flips and saves it. Without JavaScript the page still follows the
 system setting through a media query.
+
+## Activity on GitHub
+
+`scripts/update-contributions.py` reads the public contribution calendar from
+`github.com/users/zhorahmatt/contributions` and saves it to
+`assets/data/contributions.json`. `js/contributions.js` draws the latest 40
+weeks from that file. It is a snapshot, so the page says "as of" the last day
+in it; run `npm run contributions` and commit the file to refresh it.
 
 ## Open items
 

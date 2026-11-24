@@ -30,6 +30,7 @@
   --success: #28c840;
   --success-text: #0c8463;
   --focus: #2f5fd0;
+  --accent: #2f5fd0; /* the contribution graph */
 
   /* Type */
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -90,6 +91,7 @@
 
   --success-text: #5fd68a;
   --focus: #8fb0ff;
+  --accent: #7ea2ff;
 
   --shadow-avatar: 0 4px 12px rgba(0, 0, 0, 0.5);
   --shadow-float: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 14px rgba(0, 0, 0, 0.6);
@@ -123,6 +125,7 @@
 
     --success-text: #5fd68a;
     --focus: #8fb0ff;
+    --accent: #7ea2ff;
 
     --shadow-avatar: 0 4px 12px rgba(0, 0, 0, 0.5);
     --shadow-float: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 14px rgba(0, 0, 0, 0.6);

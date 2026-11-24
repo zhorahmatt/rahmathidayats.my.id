@@ -4,6 +4,7 @@
   "private": true,
   "description": "Static one-page portfolio of Rahmat Hidayat.",
   "scripts": {
-    "dev": "python3 -m http.server 4173 --bind 127.0.0.1"
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "contributions": "python3 scripts/update-contributions.py"
   }
 }

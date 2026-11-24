@@ -703,6 +703,124 @@ html:not(.js) .quotes .section__nav {
 }
 
 /* ==========================================================================
+   Activity on GitHub: 40 weeks of days, Sunday at the top of each column.
+   The cells flex with the column, so phones show the same range, smaller.
+   ========================================================================== */
+
+.section__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: color 0.15s ease-out;
+}
+
+.section__link:hover {
+  color: var(--fg);
+}
+
+.section__link .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.contrib__summary {
+  margin-top: 16px;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+.contrib__summary b {
+  font-weight: 500;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.contrib__graph {
+  position: relative;
+  margin-top: 16px;
+}
+
+.contrib__grid {
+  display: grid;
+  grid-template-rows: repeat(7, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 2px;
+}
+
+.contrib__day {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--fg) 6%, transparent);
+}
+
+.contrib__day--empty {
+  visibility: hidden;
+}
+
+.contrib__day[data-level="1"] {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.contrib__day[data-level="2"] {
+  background: color-mix(in srgb, var(--accent) 52%, transparent);
+}
+
+.contrib__day[data-level="3"] {
+  background: color-mix(in srgb, var(--accent) 76%, transparent);
+}
+
+.contrib__day[data-level="4"] {
+  background: var(--accent);
+}
+
+.contrib__day[data-label]:hover {
+  outline: 1.5px solid var(--fg);
+  outline-offset: 1px;
+}
+
+.contrib__tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--bg-inverse);
+  color: var(--fg-inverse);
+  font-size: var(--text-meta);
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  /* The script sets translate to the hovered day; this lifts the pill above it. */
+  transform: translate(-50%, -100%);
+  transition:
+    opacity 0.15s var(--ease-out),
+    translate 0.2s var(--ease-out);
+}
+
+.contrib__tip[data-visible] {
+  opacity: 1;
+}
+
+@media (min-width: 640px) {
+  .contrib__grid {
+    gap: 3px;
+  }
+
+  .contrib__day {
+    border-radius: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contrib__tip {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
    Tools
    ========================================================================== */
 
