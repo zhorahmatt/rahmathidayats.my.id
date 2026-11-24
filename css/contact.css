@@ -1,0 +1,379 @@
+/* ==========================================================================
+   Contact dock: avatar pinned bottom-left.
+   closed -> hover "peek" shows the link bar -> click "open" grows the card.
+   The card is revealed by animating its clip-path; a plate behind it carries
+   the shadow, because a clipped element cannot cast one.
+   ========================================================================== */
+
+.contact {
+  --bar-h: 44px;
+  --peek: 170px;
+  --r: 22px;
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 40;
+  display: none;
+  width: 40px;
+  height: 40px;
+}
+
+/* Only where the page margin is wide enough that the avatar never sits on
+   top of the text column. */
+@media (min-width: 800px) {
+  .contact {
+    display: block;
+  }
+}
+
+.contact__avatar {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.contact__avatar:focus-visible {
+  outline: none;
+}
+
+.contact__avatar .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: 1px solid var(--border);
+  outline-offset: -0.5px;
+  transition: scale 0.15s var(--ease-out);
+}
+
+.contact__avatar:active .avatar {
+  scale: 0.96;
+}
+
+.contact__ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 16px;
+  box-shadow: 0 0 0 1.5px var(--fg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s var(--ease-out);
+}
+
+.contact__avatar:focus-visible .contact__ring {
+  opacity: 1;
+}
+
+/* Keeps the hover alive while the pointer crosses the gap to the card. */
+.contact__bridge {
+  position: absolute;
+  bottom: -2px;
+  left: 40px;
+  width: 12px;
+  height: var(--bar-h);
+  pointer-events: none;
+}
+
+.contact[data-state="peek"] .contact__bridge {
+  pointer-events: auto;
+}
+
+.contact__pop {
+  position: absolute;
+  bottom: -2px;
+  left: 52px;
+  width: 321px;
+  pointer-events: none;
+  opacity: 0;
+  translate: -4px 0;
+  transition:
+    opacity 0.1s var(--ease-out) 0.12s,
+    translate 0.22s var(--ease-out);
+}
+
+.contact:not([data-state="closed"]) .contact__pop {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 0.12s var(--ease-out),
+    translate 0.28s var(--ease-out);
+}
+
+.contact__plate {
+  position: absolute;
+  inset: calc(100% - var(--bar-h)) calc(100% - var(--bar-h)) 0 0;
+  border-radius: var(--r);
+  box-shadow: var(--shadow-dialog);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    inset 0.22s var(--ease-out),
+    opacity 0.12s var(--ease-out) 0.1s;
+}
+
+.contact[data-state="peek"] .contact__plate {
+  inset: calc(100% - var(--bar-h)) calc(100% - var(--peek)) 0 0;
+  opacity: 1;
+  transition:
+    inset 0.3s var(--ease-out),
+    opacity 0.15s var(--ease-out);
+}
+
+.contact[data-state="open"] .contact__plate {
+  inset: 0;
+  opacity: 1;
+  transition:
+    inset 0.3s var(--ease-out),
+    opacity 0.15s var(--ease-out);
+}
+
+.contact__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: var(--r);
+  background: var(--surface);
+  visibility: hidden;
+  clip-path: inset(calc(100% - var(--bar-h)) calc(100% - var(--bar-h)) 0 0 round var(--r));
+  transition:
+    clip-path 0.22s var(--ease-out),
+    visibility 0s 0.22s;
+}
+
+.contact[data-state="peek"] .contact__card {
+  visibility: visible;
+  pointer-events: auto;
+  clip-path: inset(calc(100% - var(--bar-h)) calc(100% - var(--peek)) 0 0 round var(--r));
+  transition:
+    clip-path 0.3s var(--ease-out),
+    visibility 0s;
+}
+
+.contact[data-state="open"] .contact__card {
+  visibility: visible;
+  pointer-events: auto;
+  clip-path: inset(0 round var(--r));
+  transition:
+    clip-path 0.3s var(--ease-out),
+    visibility 0s;
+}
+
+/* The upper part only exists (for focus and screen readers) when open. */
+.contact__intro,
+.contact__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  visibility: hidden;
+  transition: visibility 0s 0.2s;
+}
+
+.contact[data-state="open"] .contact__intro,
+.contact[data-state="open"] .contact__actions {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.contact__intro {
+  padding: 16px 16px 0;
+}
+
+.contact__actions {
+  padding: 14px 16px 12px;
+}
+
+.contact__piece {
+  opacity: 0;
+  translate: 0 8px;
+  transition:
+    opacity 0.15s var(--ease-out),
+    translate 0.15s var(--ease-out);
+}
+
+.contact[data-state="open"] .contact__piece {
+  opacity: 1;
+  translate: 0 0;
+  transition-duration: 0.25s;
+  transition-delay: calc(80ms + var(--i, 0) * 60ms);
+}
+
+.contact__who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact__who .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  font-size: 16px;
+}
+
+.contact__who-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.35;
+}
+
+.contact__name {
+  font-weight: 500;
+}
+
+.contact__role {
+  font-size: var(--text-meta);
+  color: var(--fg-2);
+}
+
+.contact__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--bg-muted);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--fg-2);
+}
+
+.contact__status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--fg-3);
+}
+
+.contact__write {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--bg-inverse);
+  color: var(--fg-inverse);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.contact__write:active {
+  scale: 0.97;
+}
+
+.contact__or {
+  font-size: var(--text-meta);
+  line-height: 1.5;
+  text-align: center;
+  color: var(--fg-2);
+}
+
+.contact__or a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--underline);
+  text-underline-offset: 3px;
+}
+
+.contact__or a:hover {
+  text-decoration-color: var(--fg);
+}
+
+.contact__rule {
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.contact__bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: var(--bar-h);
+  padding: 4px;
+}
+
+.contact__item {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  color: var(--fg-2);
+  opacity: 0;
+  translate: -8px 0;
+  scale: 0.88;
+  transition:
+    opacity 0.1s var(--ease-out),
+    translate 0.12s var(--ease-out),
+    scale 0.12s var(--ease-out),
+    background-color 0.15s var(--ease-out),
+    color 0.15s var(--ease-out);
+}
+
+.contact:not([data-state="closed"]) .contact__item {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition:
+    opacity 0.18s var(--ease-out) calc(50ms + var(--i, 0) * 24ms),
+    translate 0.28s var(--ease-back) calc(50ms + var(--i, 0) * 24ms),
+    scale 0.28s var(--ease-back) calc(50ms + var(--i, 0) * 24ms),
+    background-color 0.15s var(--ease-out),
+    color 0.15s var(--ease-out);
+}
+
+.contact__item:hover {
+  background: var(--bg-muted);
+  color: var(--fg);
+}
+
+.contact__item:focus-visible {
+  outline-offset: -2px;
+  border-radius: 999px;
+}
+
+.contact__divider {
+  width: 1px;
+  height: 20px;
+  margin-inline: 4px;
+  background: var(--border);
+}
+
+/* The last button swaps between "open the card" and "close". */
+.contact__swap {
+  position: absolute;
+  transition:
+    opacity 0.25s var(--ease-out),
+    scale 0.25s var(--ease-out),
+    filter 0.25s var(--ease-out);
+}
+
+.contact__swap--close,
+.contact[data-state="open"] .contact__swap--open {
+  opacity: 0;
+  filter: blur(3px);
+  scale: 0.3;
+}
+
+.contact[data-state="open"] .contact__swap--close {
+  opacity: 1;
+  filter: none;
+  scale: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact *,
+  .contact *::before {
+    transition: none !important;
+  }
+}
