@@ -66,6 +66,7 @@
       <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></symbol>
       <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></symbol>
       <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol>
+      <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4" /><path d="m18 2 4 4-4 4" /><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22" /><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2" /><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45" /></symbol>
       <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
       <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol>
@@ -135,207 +136,228 @@
         </p>
       </div>
 
-      <section id="work" class="section section--work showcase" aria-labelledby="work-title" data-showcase>
+      <section id="work" class="section section--work work" aria-labelledby="work-title">
         <div class="section__head rise-in" style="--n: 5">
           <h2 id="work-title" class="section__title">Selected work</h2>
           <div class="section__nav">
-            <span class="showcase__count" data-count aria-hidden="true">1 / 10</span>
-            <button type="button" class="nav-button" aria-label="Previous project" data-prev>
-              <svg class="icon"><use href="#i-arrow-left" /></svg>
+            <span class="section__meta">11 projects</span>
+            <button type="button" class="nav-button" aria-label="Shuffle projects" title="Shuffle projects" data-work-shuffle>
+              <svg class="icon" aria-hidden="true"><use href="#i-shuffle" /></svg>
             </button>
-            <button type="button" class="nav-button" aria-label="Next project" data-next>
-              <svg class="icon"><use href="#i-arrow-right" /></svg>
-            </button>
+            <span class="sr-only" role="status" data-work-status></span>
           </div>
         </div>
 
-        <!-- One project at a time; the strip of thumbnails below picks which.
-             Screenshots live in assets/work/ (960 x 533 WebP). -->
-        <ul class="showcase__stage rise-in" style="--n: 6" data-stage>
-          <li class="showcase__slide" data-slide data-active>
-            <a class="tile" style="--hue: #2f49c8" href="https://esakip.com" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/esakip.webp" alt="Screenshot of the E-SAKIP home page" width="960" height="533" loading="eager" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>Government platform</span>
-                    <span class="tile__link">esakip.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-1" class="tile__name" role="heading" aria-level="3">E-SAKIP</span>
-                  <span class="tile__desc">Online performance accountability system (SAKIP) for local government agencies.</span>
-                </span>
-              </a>
+        <!-- Every project has the same markup. The first three are drawn as
+             cards and the rest as rows (css/sections.css), so reordering the
+             list is all it takes to feature different projects.
+             Images: assets/work/ (960 x 533) and assets/work/thumb/ (192 wide). -->
+        <ul class="work__list rise-in" style="--n: 6" data-work-list>
+          <li class="work__item" style="--i: 0">
+            <a class="work__card" style="--hue: #2f49c8" href="https://esakip.com" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/esakip.webp" srcset="assets/work/thumb/esakip.webp 192w, assets/work/esakip.webp 960w" sizes="(min-width: 640px) 584px, calc(100vw - 56px)" alt="Screenshot of the E-SAKIP home page" width="960" height="533" loading="eager" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">E-SAKIP</span>
+                <span class="work__cat">Government platform</span>
+                <span class="work__desc">Online performance accountability system (SAKIP) for local government agencies.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">esakip.com</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #1f3f9a" href="https://emonev.com" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/emonev.webp" alt="Screenshot of the E-Monev home page" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>Government platform</span>
-                    <span class="tile__link">emonev.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-2" class="tile__name" role="heading" aria-level="3">E-Monev</span>
-                  <span class="tile__desc">Monitoring and evaluation application for government, supporting SPBE implementation.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 1">
+            <a class="work__card" style="--hue: #1f3f9a" href="https://emonev.com" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/emonev.webp" srcset="assets/work/thumb/emonev.webp 192w, assets/work/emonev.webp 960w" sizes="(min-width: 640px) 282px, 45vw" alt="Screenshot of the E-Monev home page" width="960" height="533" loading="eager" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">E-Monev</span>
+                <span class="work__cat">Government platform</span>
+                <span class="work__desc">Monitoring and evaluation application for government, supporting SPBE implementation.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">emonev.com</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #c9962a" href="https://pesancinta.my" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/pesan-cinta.webp" alt="Screenshot of the Pesan Cinta workshop landing page" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>Event landing page</span>
-                    <span class="tile__link">pesancinta.my<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-3" class="tile__name" role="heading" aria-level="3">Pesan Cinta</span>
-                  <span class="tile__desc">Landing page for a three-day workshop, with batch schedules and registration.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 2">
+            <a class="work__card" style="--hue: #159a8c" href="https://dikerja.com" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/dikerja.webp" srcset="assets/work/thumb/dikerja.webp 192w, assets/work/dikerja.webp 960w" sizes="(min-width: 640px) 282px, 45vw" alt="Screenshot of the Dikerja sign-in screen" width="960" height="533" loading="eager" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Dikerja</span>
+                <span class="work__cat">Government platform</span>
+                <span class="work__desc">Attendance and performance reporting for civil servants, on web and mobile.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">dikerja.com</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #2f8a57" href="https://pangkep.kemenag.go.id" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/kemenag-pangkep.webp" alt="Screenshot of the Kemenag Pangkep home page" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>Government website</span>
-                    <span class="tile__link">pangkep.kemenag.go.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-4" class="tile__name" role="heading" aria-level="3">Kemenag Pangkep</span>
-                  <span class="tile__desc">Information and services portal for the Ministry of Religious Affairs office in Pangkep.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 3">
+            <a class="work__card" style="--hue: #c9962a" href="https://pesancinta.my" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/pesan-cinta.webp" srcset="assets/work/thumb/pesan-cinta.webp 192w, assets/work/pesan-cinta.webp 960w" sizes="64px" alt="Screenshot of the Pesan Cinta workshop landing page" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Pesan Cinta</span>
+                <span class="work__cat">Event landing page</span>
+                <span class="work__desc">Landing page for a three-day workshop, with batch schedules and registration.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">pesancinta.my</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <div class="tile tile--static" style="--hue: #4b5cf0">
-                <span class="tile__shot">
-                  <img src="assets/work/cms.webp" alt="Screenshot of the CMS sign-in screen" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>CPM monitoring system</span>
-                  
-                  </span>
-                  <span id="work-5" class="tile__name" role="heading" aria-level="3">CMS</span>
-                  <span class="tile__desc">Monitoring of store visits, verification and programme progress.</span>
-                </span>
-              </div>
+          <li class="work__item" style="--i: 4">
+            <a class="work__card" style="--hue: #2f8a57" href="https://pangkep.kemenag.go.id" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/kemenag-pangkep.webp" srcset="assets/work/thumb/kemenag-pangkep.webp 192w, assets/work/kemenag-pangkep.webp 960w" sizes="64px" alt="Screenshot of the Kemenag Pangkep home page" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Kemenag Pangkep</span>
+                <span class="work__cat">Government website</span>
+                <span class="work__desc">Information and services portal for the Ministry of Religious Affairs office in Pangkep.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">pangkep.kemenag.go.id</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #2456e6" href="https://serpul.co.id" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/serpul.webp" alt="Screenshot of the Serpul home page" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>PPOB platform</span>
-                    <span class="tile__link">serpul.co.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-6" class="tile__name" role="heading" aria-level="3">Serpul</span>
-                  <span class="tile__desc">White-label platform for building a branded mobile top-up and bill payment app.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 5">
+            <div class="work__card work__card--static" style="--hue: #4b5cf0">
+              <span class="work__shot">
+                <img src="assets/work/cms.webp" srcset="assets/work/thumb/cms.webp 192w, assets/work/cms.webp 960w" sizes="64px" alt="Screenshot of the CMS sign-in screen" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">CMS</span>
+                <span class="work__cat">CPM monitoring system</span>
+                <span class="work__desc">Monitoring of store visits, verification and programme progress.</span>
+              </span>
+            </div>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #1f78e0" href="https://kioser.com" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/kioser.webp" alt="Screenshot of the Kioser home page" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>Game top-up store</span>
-                    <span class="tile__link">kioser.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-7" class="tile__name" role="heading" aria-level="3">Kioser</span>
-                  <span class="tile__desc">Game top-up storefront with instant delivery and QRIS payment.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 6">
+            <a class="work__card" style="--hue: #2456e6" href="https://serpul.co.id" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/serpul.webp" srcset="assets/work/thumb/serpul.webp 192w, assets/work/serpul.webp 960w" sizes="64px" alt="Screenshot of the Serpul home page" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Serpul</span>
+                <span class="work__cat">PPOB platform</span>
+                <span class="work__desc">White-label platform for building a branded mobile top-up and bill payment app.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">serpul.co.id</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #d99a00" href="https://afila.co.id" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/afila.webp" alt="Screenshot of the Afila home page" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>Company website</span>
-                    <span class="tile__link">afila.co.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-8" class="tile__name" role="heading" aria-level="3">Afila</span>
-                  <span class="tile__desc">Company website for Afila, a digital agency serving government needs.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 7">
+            <a class="work__card" style="--hue: #1f78e0" href="https://kioser.com" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/kioser.webp" srcset="assets/work/thumb/kioser.webp 192w, assets/work/kioser.webp 960w" sizes="64px" alt="Screenshot of the Kioser home page" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Kioser</span>
+                <span class="work__cat">Game top-up store</span>
+                <span class="work__desc">Game top-up storefront with instant delivery and QRIS payment.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">kioser.com</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #159a8c" href="https://dikerja.com" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/dikerja.webp" alt="Screenshot of the Dikerja sign-in screen" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>Government platform</span>
-                    <span class="tile__link">dikerja.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-9" class="tile__name" role="heading" aria-level="3">Dikerja</span>
-                  <span class="tile__desc">Attendance and performance reporting for civil servants, on web and mobile.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 8">
+            <a class="work__card" style="--hue: #d99a00" href="https://afila.co.id" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/afila.webp" srcset="assets/work/thumb/afila.webp 192w, assets/work/afila.webp 960w" sizes="64px" alt="Screenshot of the Afila home page" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Afila</span>
+                <span class="work__cat">Company website</span>
+                <span class="work__desc">Company website for Afila, a digital agency serving government needs.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">afila.co.id</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
-          <li class="showcase__slide" data-slide>
-            <a class="tile" style="--hue: #c2532f" href="https://moovs.thuuba.web.id/" target="_blank" rel="noopener">
-                <span class="tile__shot">
-                  <img src="assets/work/moovs.webp" alt="Screenshot of the Moovs Coffee home page" width="960" height="533" loading="lazy" decoding="async" />
-                </span>
-                <span class="tile__text">
-                  <span class="tile__top">
-                    <span>UI design</span>
-                    <span class="tile__link">moovs.thuuba.web.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
-                  </span>
-                  <span id="work-10" class="tile__name" role="heading" aria-level="3">Moovs Coffee</span>
-                  <span class="tile__desc">UI design for the website of a Makassar coffee chain.</span>
-                </span>
-              </a>
+          <li class="work__item" style="--i: 9">
+            <a class="work__card" style="--hue: #c2532f" href="https://moovs.thuuba.web.id/" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/moovs.webp" srcset="assets/work/thumb/moovs.webp 192w, assets/work/moovs.webp 960w" sizes="64px" alt="Screenshot of the Moovs Coffee home page" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Moovs Coffee</span>
+                <span class="work__cat">UI design</span>
+                <span class="work__desc">UI design for the website of a Makassar coffee chain.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">moovs.thuuba.web.id</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
+          </li>
+          <li class="work__item" style="--i: 10">
+            <a class="work__card" style="--hue: #4a6b40" href="https://dzkrr.thuuba.web.id/" target="_blank" rel="noopener">
+              <span class="work__shot">
+                <img src="assets/work/dzkrr.webp" srcset="assets/work/thumb/dzkrr.webp 192w, assets/work/dzkrr.webp 960w" sizes="64px" alt="Two phone screens of Dzkrr: the home screen and a morning dhikr with its translation" width="960" height="533" loading="lazy" decoding="async" />
+              </span>
+              <span class="work__body">
+                <span class="work__name" role="heading" aria-level="3">Dzkrr</span>
+                <span class="work__cat">Mobile web app</span>
+                <span class="work__desc">Daily dhikr and duas to read anywhere, with translation, transliteration and a counter for each one.</span>
+              </span>
+              <span class="work__link"><span class="work__domain">dzkrr.thuuba.web.id</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+            </a>
           </li>
         </ul>
 
-        <div class="showcase__strip rise-in" style="--n: 7" role="group" aria-label="Choose a project">
-          <button type="button" class="showcase__thumb" style="--hue: #2f49c8" aria-label="E-SAKIP" aria-current="true" data-thumb>
-            <img src="assets/work/esakip.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #1f3f9a" aria-label="E-Monev" aria-current="false" data-thumb>
-            <img src="assets/work/emonev.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #c9962a" aria-label="Pesan Cinta" aria-current="false" data-thumb>
-            <img src="assets/work/pesan-cinta.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #2f8a57" aria-label="Kemenag Pangkep" aria-current="false" data-thumb>
-            <img src="assets/work/kemenag-pangkep.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #4b5cf0" aria-label="CMS" aria-current="false" data-thumb>
-            <img src="assets/work/cms.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #2456e6" aria-label="Serpul" aria-current="false" data-thumb>
-            <img src="assets/work/serpul.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #1f78e0" aria-label="Kioser" aria-current="false" data-thumb>
-            <img src="assets/work/kioser.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #d99a00" aria-label="Afila" aria-current="false" data-thumb>
-            <img src="assets/work/afila.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #159a8c" aria-label="Dikerja" aria-current="false" data-thumb>
-            <img src="assets/work/dikerja.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-          <button type="button" class="showcase__thumb" style="--hue: #c2532f" aria-label="Moovs Coffee" aria-current="false" data-thumb>
-            <img src="assets/work/moovs.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
-          </button>
-        </div>
+        <!-- Inline on purpose: the order has to be set before the first paint,
+             so nothing visibly jumps. Each visit shuffles the projects, and
+             the button in the section head shuffles them again. -->
+        <script>
+          (function () {
+            var list = document.querySelector("[data-work-list]");
+            var button = document.querySelector("[data-work-shuffle]");
+            var status = document.querySelector("[data-work-status]");
+            if (!list) return;
+
+            // How wide each image is drawn: the lead card, the two smaller cards, a row.
+            var SIZES = [
+              "(min-width: 640px) 584px, calc(100vw - 56px)",
+              "(min-width: 640px) 282px, 45vw",
+              "64px",
+            ];
+
+            function shuffle(items) {
+              for (var i = items.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var swap = items[i];
+                items[i] = items[j];
+                items[j] = swap;
+              }
+              return items;
+            }
+
+            // changeLead: keep shuffling until a different project leads.
+            function arrange(changeLead) {
+              var items = Array.prototype.slice.call(list.children);
+              var lead = items[0];
+              do {
+                shuffle(items);
+              } while (changeLead && items.length > 1 && items[0] === lead);
+
+              items.forEach(function (item, i) {
+                var img = item.querySelector("img");
+                item.style.setProperty("--i", i);
+                img.sizes = SIZES[i === 0 ? 0 : i < 3 ? 1 : 2];
+                img.loading = i < 3 ? "eager" : "lazy";
+                list.appendChild(item);
+              });
+              return items;
+            }
+
+            arrange(false);
+
+            if (!button) return;
+            button.addEventListener("click", function () {
+              var items = arrange(true);
+              // Restart the short rise-in on the items.
+              list.classList.remove("is-shuffled");
+              void list.offsetWidth;
+              list.classList.add("is-shuffled");
+              if (status) {
+                status.textContent =
+                  "Projects shuffled. " + items[0].querySelector(".work__name").textContent + " is first.";
+              }
+            });
+          })();
+        </script>
       </section>
 
       <section id="services" class="section" aria-labelledby="services-title" data-reveal>

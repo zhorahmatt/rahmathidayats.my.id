@@ -1,4 +1,3 @@
-import { initShowcase } from "./showcase.js";
 import { initQuotes } from "./quotes.js";
 import { initEmailCopy } from "./email-copy.js";
 import { initContact } from "./contact.js";
@@ -7,7 +6,6 @@ import { initContributions } from "./contributions.js";
 import { initTheme } from "./theme.js";
 
 initTheme();
-initShowcase();
 initQuotes();
 initEmailCopy();
 initContact();

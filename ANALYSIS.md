@@ -28,7 +28,7 @@ Observed on the reference:
 
 | Reference | Here | Reason |
 | --- | --- | --- |
-| Edge-to-edge carousel of screenshot tiles | One project at a time inside the text column, with a strip of ten thumbnails to pick from | Rahmat asked for a layout less like the reference; a grid was tried and dropped |
+| Edge-to-edge carousel of screenshot tiles | Three projects as cards and the rest as rows, inside the text column. The order is shuffled on every visit, and a button shuffles it again | Rahmat asked for a layout less like the reference, and for every project to get a turn at the top; a grid and a one-at-a-time showcase were tried and dropped |
 | Speaking photos and list | "What I do" rows | Rahmat's six service areas, including digital marketing (Meta Ads) |
 | Testimonials | "What I believe" (his own two statements) | No real testimonials; none invented |
 | YouTube grid | Left out | No such content |
@@ -39,15 +39,18 @@ Observed on the reference:
 ## Files
 
 - `index.html`: all content. Interface icons are an inline SVG sprite (Lucide).
-- `assets/work/`: ten project screenshots supplied by Rahmat, cropped and resized to 960 × 533 WebP.
+- `assets/work/`: eleven project images at 960 × 533 WebP. Ten are screenshots supplied by Rahmat, cropped and resized. `dzkrr.webp` is composed from his two phone screenshots, set side by side on the app's green.
+- `assets/work/thumb/`: the same eleven at 192px wide, for the rows. The browser picks between the two through `srcset`.
 - `assets/avatar.webp`: Rahmat's portrait, cropped square from the photo he supplied (264 × 264).
 - `assets/tools/`: eighteen tool logos from the Iconify "logos" set (CC0), saved locally.
 - `css/tokens.css`: colours, type sizes, shadows, easings, for light and dark.
 - `css/base.css`: reset, focus ring, rise-in and scroll-reveal motion.
-- `css/sections.css`: page grid, hero, work showcase, rows, statements, tools, footer.
+- `css/sections.css`: page grid, hero, selected work, rows, statements, tools, footer.
 - `css/contact.css`: the contact dock.
-- `js/showcase.js`, `contributions.js`, `quotes.js`, `email-copy.js`, `contact.js`, `reveal.js`, `theme.js`: one
+- `js/contributions.js`, `quotes.js`, `email-copy.js`, `contact.js`, `reveal.js`, `theme.js`: one
   small module per behaviour, started from `js/main.js`.
+- The shuffle for Selected work is a short inline script in `index.html`, right after the list, so the
+  order is set before the first paint. Without JavaScript the projects keep the order in the markup.
 
 The page is complete without JavaScript: both statements list out and "email"
 is a normal mail link. `prefers-reduced-motion`

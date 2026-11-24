@@ -359,135 +359,49 @@ html:not(.js) .theme-toggle {
 }
 
 /* ==========================================================================
-   Selected work: one project at a time inside the text column, with a strip
-   of thumbnails underneath to pick from. Each tile is a screenshot over a
-   short caption, tinted with the project's own colour (--hue, set inline).
+   Selected work: three projects lead as cards, the rest follow as rows.
+   Every project has the same markup; its place in the list decides how it is
+   drawn, so shuffling the list (the script after it in index.html) is enough
+   to feature different projects. --hue is the project's own colour.
    ========================================================================== */
 
-.showcase__count {
-  font-size: var(--text-meta);
-  color: var(--fg-2);
-  font-variant-numeric: tabular-nums;
-}
-
-.showcase__stage {
-  display: grid;
-  margin-top: 12px;
-}
-
-.showcase__slide {
-  grid-area: 1 / 1;
-  min-width: 0;
-}
-
-/* With JS the projects stack and cross-fade; without it they simply list. */
-.js .showcase__slide {
-  transition:
-    opacity 0.35s var(--ease-out),
-    filter 0.35s var(--ease-out),
-    scale 0.35s var(--ease-out),
-    visibility 0s;
-}
-
-.js .showcase__slide:not([data-active]) {
-  visibility: hidden;
-  opacity: 0;
-  filter: blur(6px);
-  scale: 0.985;
-  transition-delay: 0s, 0s, 0s, 0.35s;
-}
-
-html:not(.js) .showcase__slide {
-  grid-area: auto;
-}
-
-html:not(.js) .showcase__stage {
-  gap: 12px;
-}
-
-html:not(.js) .showcase__strip,
-html:not(.js) .showcase .section__nav {
+html:not(.js) .work .nav-button {
   display: none;
 }
 
-.showcase__strip {
+.work__list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 12px;
   margin-top: 12px;
 }
 
-.showcase__thumb {
+.work__item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+/* After a shuffle the items rise in again, one after another. */
+.work__list.is-shuffled .work__item {
+  animation: rise-in 0.35s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 25ms);
+}
+
+/* ---- Shared pieces ---- */
+
+.work__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+/* The text sits straight on the card's grid. */
+.work__body {
+  display: contents;
+}
+
+.work__shot {
   position: relative;
-  aspect-ratio: 960 / 533;
-  overflow: hidden;
-  border-radius: 6px;
-  background: var(--bg-muted);
-  opacity: 0.5;
-  transition:
-    opacity 0.2s ease-out,
-    box-shadow 0.2s ease-out;
-}
-
-.showcase__thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
-}
-
-.showcase__thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 1px var(--ring);
-}
-
-.showcase__thumb:hover {
-  opacity: 0.85;
-}
-
-/* The chosen one is fully lit and ringed in its project colour. */
-.showcase__thumb[aria-current="true"] {
-  opacity: 1;
-  box-shadow:
-    0 0 0 2px var(--bg),
-    0 0 0 3.5px color-mix(in srgb, var(--hue) 75%, var(--fg));
-}
-
-.showcase__thumb:focus-visible {
-  opacity: 1;
-  border-radius: 6px;
-}
-
-@media (min-width: 560px) {
-  .showcase__strip {
-    grid-template-columns: repeat(10, 1fr);
-  }
-}
-
-.tile {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 8px;
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--hue) var(--tint-bg), var(--bg));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hue) var(--tint-ring), transparent);
-  transition: background-color 0.3s var(--ease-out);
-}
-
-a.tile:hover {
-  background: color-mix(in srgb, var(--hue) var(--tint-bg-hover), var(--bg));
-}
-
-a.tile:focus-visible {
-  border-radius: 16px;
-}
-
-.tile__shot {
-  position: relative;
+  grid-area: shot;
   display: block;
   aspect-ratio: 960 / 533;
   overflow: hidden;
@@ -495,7 +409,7 @@ a.tile:focus-visible {
   background: var(--bg-muted);
 }
 
-.tile__shot img {
+.work__shot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -503,12 +417,12 @@ a.tile:focus-visible {
   transition: scale 0.4s var(--ease-out);
 }
 
-a.tile:hover .tile__shot img {
+a.work__card:hover .work__shot img {
   scale: 1.03;
 }
 
-/* Hairline over the screenshot, so light pages do not bleed into the tile. */
-.tile__shot::after {
+/* Hairline over the screenshot, so light pages do not bleed into the card. */
+.work__shot::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -517,61 +431,201 @@ a.tile:hover .tile__shot img {
   pointer-events: none;
 }
 
-.tile__text {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 8px 10px;
+.work__name {
+  grid-area: name;
+  min-width: 0;
 }
 
-.tile__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.work__cat {
+  grid-area: cat;
+  min-width: 0;
   font-size: var(--text-meta);
   line-height: 1.5;
   color: var(--fg-2);
 }
 
-.tile__link {
+.work__desc {
+  grid-area: desc;
+  display: none;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+.work__link {
+  grid-area: link;
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  min-width: 0;
+  font-size: var(--text-meta);
+  line-height: 1.5;
   white-space: nowrap;
+  color: var(--fg-2);
   transition: color 0.15s ease-out;
 }
 
-.tile__link .icon {
+.work__link .icon {
   flex-shrink: 0;
   width: 13px;
   height: 13px;
   transition: translate 0.25s var(--ease-out);
 }
 
-a.tile:hover .tile__link {
+a.work__card:hover .work__link {
   color: var(--fg);
 }
 
-a.tile:hover .tile__link .icon {
+a.work__card:hover .work__link .icon {
   translate: 1.5px -1.5px;
 }
 
-.tile__name {
-  margin-top: 2px;
+/* ---- The first three: cards tinted with the project's colour ---- */
+
+.work__item:nth-child(-n + 3) {
+  margin-bottom: 12px;
+}
+
+.work__item:nth-child(-n + 3) .work__card {
+  height: 100%;
+  align-content: start;
+  padding: 8px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--hue) var(--tint-bg), var(--bg));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hue) var(--tint-ring), transparent);
+  transition: background-color 0.3s var(--ease-out);
+}
+
+.work__item:nth-child(-n + 3) a.work__card:hover {
+  background: color-mix(in srgb, var(--hue) var(--tint-bg-hover), var(--bg));
+}
+
+.work__item:nth-child(-n + 3) a.work__card:focus-visible {
+  border-radius: 16px;
+}
+
+/* The lead card: screenshot, then category and link, name, description. */
+.work__item:first-child .work__card {
+  grid-template-areas:
+    "shot shot"
+    "cat  link"
+    "name name"
+    "desc desc";
+}
+
+.work__item:first-child .work__cat {
+  margin: 14px 0 0 8px;
+}
+
+.work__item:first-child .work__link {
+  margin: 14px 8px 0 12px;
+}
+
+.work__item:first-child .work__name {
+  margin: 6px 8px 0;
   font-size: 22px;
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.03em;
 }
 
-.tile__desc {
-  font-size: var(--text-small);
-  line-height: 1.5;
-  color: var(--fg-2);
-  text-wrap: pretty;
+.work__item:first-child .work__desc {
+  display: block;
+  margin: 4px 8px 10px;
+}
+
+/* The two smaller cards share a row: name with an arrow, category under it. */
+.work__item:nth-child(2),
+.work__item:nth-child(3) {
+  grid-column: auto;
+}
+
+.work__item:is(:nth-child(2), :nth-child(3)) .work__card {
+  grid-template-areas:
+    "shot shot"
+    "name link"
+    "cat  cat";
+  padding: 6px;
+  border-radius: 14px;
+}
+
+.work__item:is(:nth-child(2), :nth-child(3)) a.work__card:focus-visible {
+  border-radius: 14px;
+}
+
+.work__item:is(:nth-child(2), :nth-child(3)) .work__shot {
+  border-radius: 8px;
+}
+
+.work__item:is(:nth-child(2), :nth-child(3)) .work__name {
+  margin: 10px 0 0 6px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.work__item:is(:nth-child(2), :nth-child(3)) .work__link {
+  align-self: start;
+  margin: 13px 6px 0 8px;
+}
+
+.work__item:is(:nth-child(2), :nth-child(3)) .work__cat {
+  margin: 1px 6px 6px;
+}
+
+/* No room for the address on the small cards; screen readers still get it. */
+.work__item:is(:nth-child(2), :nth-child(3)) .work__domain {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ---- The rest: rows with a small screenshot ---- */
+
+.work__item:nth-child(n + 4) {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.work__item:nth-child(4) {
+  margin-top: 8px;
+}
+
+.work__item:nth-child(n + 4) .work__card {
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "shot name link"
+    "shot cat  link";
+  align-items: center;
+  column-gap: 14px;
+  padding-block: 11px;
+}
+
+.work__item:nth-child(n + 4) .work__shot {
+  border-radius: 5px;
+}
+
+.work__item:nth-child(n + 4) .work__name {
+  align-self: end;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.work__item:nth-child(n + 4) .work__cat {
+  align-self: start;
+}
+
+@media (max-width: 479px) {
+  .work__item:nth-child(n + 4) .work__domain {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
 }
 
 /* ==========================================================================
@@ -711,12 +765,14 @@ html:not(.js) .quotes .section__nav {
 
 @media (prefers-reduced-motion: reduce) {
   .js .quote,
-  .js .showcase__slide,
-  .showcase__thumb,
-  .tile,
-  .tile__shot img,
-  .tile__link .icon {
+  .work__card,
+  .work__shot img,
+  .work__link .icon {
     transition: none;
+  }
+
+  .work__list.is-shuffled .work__item {
+    animation: none;
   }
 }
 
