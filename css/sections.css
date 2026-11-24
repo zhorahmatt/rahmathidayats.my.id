@@ -951,6 +951,55 @@ html:not(.js) .quotes .section__nav {
 }
 
 /* ==========================================================================
+   About: a short bio in the third person, then a few facts as a list.
+   ========================================================================== */
+
+.about__bio {
+  margin-top: 12px;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+.facts {
+  margin: 20px 0 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 16px;
+  padding-block: 10px;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.fact + .fact {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.fact dt {
+  color: var(--fg-2);
+}
+
+.fact dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.fact a {
+  text-decoration: underline;
+  text-decoration-color: var(--underline);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s var(--ease-out);
+}
+
+.fact a:hover {
+  text-decoration-color: var(--fg);
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 

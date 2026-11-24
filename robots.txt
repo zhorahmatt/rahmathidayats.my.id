@@ -1,3 +1,4 @@
+# Everyone is welcome, search engines and AI assistants included.
 User-agent: *
 Allow: /
 

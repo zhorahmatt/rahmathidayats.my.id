@@ -73,6 +73,21 @@ system setting through a media query.
 weeks from that file. It is a snapshot, so the page says "as of" the last day
 in it; run `npm run contributions` and commit the file to refresh it.
 
+## Search, sharing and AI assistants
+
+- Title (60 characters) and description (147) name what Rahmat does and where: software, AI agents,
+  marketing, Makassar.
+- `assets/og.png` (1200 × 630) is the image shown when the link is shared. Its source is
+  `scripts/og-image.html`; change the text there and run `npm run og` (needs Google Chrome).
+- Open Graph and Twitter card tags point at that image.
+- Structured data is one JSON-LD graph in `index.html`: WebSite, ProfilePage, Person, the two
+  organisations and the list of selected work. Keep `dateModified`, the footer's "Updated" date and
+  `sitemap.xml` in step when the content changes.
+- "About Rahmat Hidayat" is a third-person bio that can be quoted on its own, with a short list of facts.
+- Project names and service names are real `h3` headings.
+- `robots.txt` allows every crawler, AI assistants included. `llms.txt` is a plain summary for AI
+  tools; Google says it ignores the file, so it is there as a courtesy, not a ranking lever.
+
 ## Deploying (Vercel)
 
 The site is plain static files, so Vercel serves the repository root as it is:

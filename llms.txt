@@ -1,0 +1,20 @@
+# Rahmat Hidayat
+
+> Software engineer and digital marketer in Makassar, Indonesia. Engineering Lead at Afila and founder of Thuuba, a digital marketing agency. Builds software and AI agents and runs performance marketing.
+
+## About
+
+- Engineering Lead at Afila (https://afila.co.id), leading the team behind E-SAKIP, E-Monev and Dikerja, platforms local governments in Indonesia use to plan, measure and report their work.
+- Founder of Thuuba (https://thuuba.web.id), a digital marketing agency running performance marketing on Meta Ads, Google Ads and TikTok Ads.
+- Builds AI agents and agent workflows for engineering and marketing work.
+- Works with Laravel, Vue.js, React, Next.js, TypeScript, Go and PostgreSQL.
+
+## Pages
+
+- [Home](https://rahmathidayats.my.id/): profile, selected work, services and contact
+
+## Contact
+
+- Email: work.rahmathidayat@gmail.com
+- [GitHub](https://github.com/zhorahmatt)
+- [LinkedIn](https://www.linkedin.com/in/rahmathidayatofficial/)
