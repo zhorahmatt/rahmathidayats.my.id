@@ -222,6 +222,17 @@ html:not(.js) .theme-toggle {
   text-wrap: pretty;
 }
 
+/* The opening line: larger and in full ink, so the page starts with a claim
+   rather than a paragraph. */
+.intro .intro__lead {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
 .intro strong {
   font-weight: 400;
   color: var(--fg);
@@ -260,6 +271,10 @@ html:not(.js) .theme-toggle {
 
   .intro {
     margin-top: 48px;
+  }
+
+  .intro .intro__lead {
+    font-size: 22px;
   }
 }
 

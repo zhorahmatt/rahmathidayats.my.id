@@ -33,7 +33,7 @@ Observed on the reference:
 | Testimonials | "What I believe" (his own two statements) | No real testimonials; none invented |
 | YouTube grid | Left out | No such content |
 | Contribution graph in orange | Same idea in blue, drawn from a saved snapshot | See "Activity on GitHub" below |
-| "Available for new work" | "Currently at Thuuba Digital" | Availability was never stated |
+| "Available for new work" | "Leading engineering at Afila" | Availability was never stated |
 | Contact form | `mailto:` button | No backend |
 
 ## Files
@@ -41,7 +41,7 @@ Observed on the reference:
 - `index.html`: all content. Interface icons are an inline SVG sprite (Lucide).
 - `assets/work/`: ten project screenshots supplied by Rahmat, cropped and resized to 960 × 533 WebP.
 - `assets/avatar.webp`: Rahmat's portrait, cropped square from the photo he supplied (264 × 264).
-- `assets/tools/`: fifteen tool logos from the Iconify "logos" set (CC0), saved locally.
+- `assets/tools/`: eighteen tool logos from the Iconify "logos" set (CC0), saved locally.
 - `css/tokens.css`: colours, type sizes, shadows, easings, for light and dark.
 - `css/base.css`: reset, focus ring, rise-in and scroll-reveal motion.
 - `css/sections.css`: page grid, hero, work showcase, rows, statements, tools, footer.
