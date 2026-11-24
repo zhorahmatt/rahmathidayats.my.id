@@ -1,0 +1,131 @@
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #ffffff;
+  --bg-subtle: #f9f8f6;
+  --bg-muted: #f2f1ef;
+  --bg-hover: rgba(10, 10, 10, 0.04);
+  --bg-inverse: #0a0a0a;
+  --surface: #ffffff; /* floating things: contact card, tooltip */
+
+  /* Text */
+  --fg: #0a0a0a;
+  --fg-2: rgba(10, 10, 10, 0.65);
+  --fg-3: rgba(10, 10, 10, 0.45);
+  --fg-inverse: #ffffff;
+
+  /* Lines */
+  --border: rgba(10, 10, 10, 0.08);
+  --border-subtle: rgba(10, 10, 10, 0.05);
+  --underline: rgba(10, 10, 10, 0.3);
+  --ring: rgba(0, 0, 0, 0.1);
+
+  /* How strongly a project's colour tints its tile */
+  --tint-bg: 9%;
+  --tint-bg-hover: 13%;
+  --tint-ring: 22%;
+
+  /* Status */
+  --success: #28c840;
+  --success-text: #0c8463;
+  --focus: #2f5fd0;
+
+  /* Type */
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-meta: 13px;
+  --text-small: 14px;
+  --text-body: 16px;
+  --text-large: 18px;
+
+  /* Layout */
+  --content: 600px;
+  --gutter: 20px;
+
+  /* Shadows */
+  --shadow-avatar: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-float: 0 0 1px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.14);
+  --shadow-dialog: 0 0 0.5px rgba(0, 0, 0, 0.2), 0 18px 20px rgba(0, 0, 0, 0.12);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-back: cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 24px;
+  }
+}
+
+/* ==========================================================================
+   Dark theme. The script in <head> sets data-theme from the saved choice or
+   the system setting; the toggle flips it. The media query below repeats the
+   same values for visitors without JavaScript.
+   ========================================================================== */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0b0b0b;
+  --bg-subtle: #121212;
+  --bg-muted: #1e1e1d;
+  --bg-hover: rgba(255, 255, 255, 0.07);
+  --bg-inverse: #f5f5f4;
+  --surface: #171717;
+
+  --fg: #f5f5f4;
+  --fg-2: rgba(245, 245, 244, 0.65);
+  --fg-3: rgba(245, 245, 244, 0.45);
+  --fg-inverse: #0a0a0a;
+
+  --border: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --underline: rgba(245, 245, 244, 0.35);
+  --ring: rgba(255, 255, 255, 0.1);
+
+  --tint-bg: 16%;
+  --tint-bg-hover: 22%;
+  --tint-ring: 40%;
+
+  --success-text: #5fd68a;
+  --focus: #8fb0ff;
+
+  --shadow-avatar: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-float: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 14px rgba(0, 0, 0, 0.6);
+  --shadow-dialog: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 18px 28px rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --bg: #0b0b0b;
+    --bg-subtle: #121212;
+    --bg-muted: #1e1e1d;
+    --bg-hover: rgba(255, 255, 255, 0.07);
+    --bg-inverse: #f5f5f4;
+    --surface: #171717;
+
+    --fg: #f5f5f4;
+    --fg-2: rgba(245, 245, 244, 0.65);
+    --fg-3: rgba(245, 245, 244, 0.45);
+    --fg-inverse: #0a0a0a;
+
+    --border: rgba(255, 255, 255, 0.12);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --underline: rgba(245, 245, 244, 0.35);
+    --ring: rgba(255, 255, 255, 0.1);
+
+    --tint-bg: 16%;
+    --tint-bg-hover: 22%;
+    --tint-ring: 40%;
+
+    --success-text: #5fd68a;
+    --focus: #8fb0ff;
+
+    --shadow-avatar: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-float: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 14px rgba(0, 0, 0, 0.6);
+    --shadow-dialog: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 18px 28px rgba(0, 0, 0, 0.6);
+  }
+}
