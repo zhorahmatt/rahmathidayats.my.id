@@ -1,10 +1,11 @@
 {
   "name": "rahmathidayats.my.id",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "description": "Static one-page portfolio of Rahmat Hidayat.",
   "scripts": {
     "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
-    "contributions": "python3 scripts/update-contributions.py"
+    "contributions": "python3 scripts/update-contributions.py",
+    "og": "sh scripts/render-og.sh"
   }
 }

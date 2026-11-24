@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- Source of assets/og.png, the 1200 x 630 image shown when the site is shared.
+     Edit the text here, then run `npm run og` to render it again. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 72px 80px 64px;
+        background: #ffffff;
+        color: #0a0a0a;
+        font-family: "Geist", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .who {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .who img {
+        width: 96px;
+        height: 96px;
+        border-radius: 28px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+      }
+
+      .name {
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+
+      .role {
+        margin-top: 4px;
+        font-size: 24px;
+        line-height: 1.3;
+        color: rgba(10, 10, 10, 0.65);
+      }
+
+      .lead {
+        max-width: 1040px;
+        font-size: 58px;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+      }
+
+      .foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 24px;
+        border-top: 2px solid rgba(10, 10, 10, 0.08);
+        font-size: 24px;
+        color: rgba(10, 10, 10, 0.65);
+      }
+
+      .foot b {
+        font-weight: 500;
+        color: #0a0a0a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="who">
+      <img src="../assets/avatar.webp" alt="" />
+      <div>
+        <p class="name">Rahmat Hidayat</p>
+        <p class="role">Engineering Lead at Afila · Founder of Thuuba</p>
+      </div>
+    </div>
+    <p class="lead">I build software and AI agents that solve real problems, and run the marketing that gets them found.</p>
+    <div class="foot">
+      <b>rahmathidayats.my.id</b>
+      <span>Makassar, Indonesia</span>
+    </div>
+  </body>
+</html>
