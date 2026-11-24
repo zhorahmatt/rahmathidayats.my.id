@@ -1,0 +1,13 @@
+import { initShowcase } from "./showcase.js";
+import { initQuotes } from "./quotes.js";
+import { initEmailCopy } from "./email-copy.js";
+import { initContact } from "./contact.js";
+import { initReveal } from "./reveal.js";
+import { initTheme } from "./theme.js";
+
+initTheme();
+initShowcase();
+initQuotes();
+initEmailCopy();
+initContact();
+initReveal();
