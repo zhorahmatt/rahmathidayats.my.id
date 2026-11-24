@@ -42,6 +42,7 @@ Observed on the reference:
 - `assets/work/`: eleven project images at 960 × 533 WebP. Ten are screenshots supplied by Rahmat, cropped and resized. `dzkrr.webp` is composed from his two phone screenshots, set side by side on the app's green.
 - `assets/work/thumb/`: the same eleven at 192px wide, for the rows. The browser picks between the two through `srcset`.
 - `assets/avatar.webp`: Rahmat's portrait, cropped square from the photo he supplied (264 × 264).
+- `favicon.ico`, `assets/favicon.png`, `assets/apple-touch-icon.png`: the same portrait as the site icon (16–48px, 192px with rounded corners, and 180px square for iOS).
 - `assets/tools/`: eighteen tool logos from the Iconify "logos" set (CC0), saved locally.
 - `css/tokens.css`: colours, type sizes, shadows, easings, for light and dark.
 - `css/base.css`: reset, focus ring, rise-in and scroll-reveal motion.
