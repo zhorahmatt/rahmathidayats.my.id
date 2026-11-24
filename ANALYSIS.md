@@ -69,6 +69,18 @@ system setting through a media query.
 weeks from that file. It is a snapshot, so the page says "as of" the last day
 in it; run `npm run contributions` and commit the file to refresh it.
 
+## Deploying (Vercel)
+
+The site is plain static files, so Vercel serves the repository root as it is:
+`vercel.json` switches off the install and build steps, adds a few security
+headers and lets screenshots and logos be cached for a day. `.vercelignore`
+keeps this file, `scripts/` and `package.json` out of the published site.
+`robots.txt` and `sitemap.xml` point at https://rahmathidayats.my.id/, the
+address the canonical link also uses.
+
+The contribution graph is a committed snapshot, so it only changes when
+`npm run contributions` is run and the result is pushed.
+
 ## Earlier versions
 
 Three earlier attempts are kept in a local `archive/` folder that is not part
