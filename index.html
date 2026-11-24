@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Runs before first paint: marks JS as on and picks the theme (saved choice,
+      // else the system setting) so the page never flashes the wrong colours.
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        var theme = null;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch (e) {}
+        if (theme !== "dark" && theme !== "light") {
+          theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.dataset.theme = theme;
+      })();
+    </script>
+    <title>Rahmat Hidayat — Software Engineer &amp; Digital Marketer</title>
+    <meta
+      name="description"
+      content="Rahmat Hidayat is a software engineer and digital marketer in Indonesia. He builds web systems for government and enterprise with Laravel and Vue.js, and runs Meta Ads campaigns."
+    />
+    <link rel="canonical" href="https://rahmathidayats.my.id/" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rahmat Hidayat — Software Engineer &amp; Digital Marketer" />
+    <meta
+      property="og:description"
+      content="Reliable web systems for government and enterprise, built with Laravel and Vue.js. Meta Ads campaigns on Facebook and Instagram."
+    />
+    <meta property="og:url" content="https://rahmathidayats.my.id/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rahmat Hidayat",
+        "url": "https://rahmathidayats.my.id/",
+        "jobTitle": ["Software Engineer", "Digital Marketer"],
+        "worksFor": { "@type": "Organization", "name": "Thuuba Digital" },
+        "address": { "@type": "PostalAddress", "addressCountry": "ID" },
+        "sameAs": ["https://github.com/zhorahmatt", "https://www.linkedin.com/in/rahmathidayatofficial/"]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Interface icons (Lucide, ISC licence), referenced with <use>. -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></symbol>
+      <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /><path d="m21.854 2.147-10.94 10.939" /></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5" /><path d="M20 21a8 8 0 0 0-16 0" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></symbol>
+      <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z" /><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" /></symbol>
+      <symbol id="i-braces" viewBox="0 0 24 24"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1" /><path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1" /></symbol>
+    </svg>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <main id="main" class="page">
+      <header class="hero rise-in">
+        <!-- Swap the monogram for a photo: add assets/avatar.jpg and set
+             style="background-image: url(assets/avatar.jpg)" with no text inside. -->
+        <span class="avatar avatar--hero" aria-hidden="true">rh</span>
+        <div class="hero__text">
+          <h1 class="hero__name">Rahmat Hidayat</h1>
+          <p class="hero__role"><span>Software Engineer &amp; Digital Marketer</span><span class="hero__dot" aria-hidden="true"> · </span><span>Indonesia</span></p>
+        </div>
+        <button type="button" class="nav-button theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode" data-theme-toggle>
+          <span class="theme-toggle__icon theme-toggle__icon--moon"><svg class="icon"><use href="#i-moon" /></svg></span>
+          <span class="theme-toggle__icon theme-toggle__icon--sun"><svg class="icon"><use href="#i-sun" /></svg></span>
+        </button>
+      </header>
+
+      <div class="intro">
+        <p class="rise-in" style="--n: 1">
+          I’m a software engineer at <strong>Thuuba Digital</strong>. I build reliable web
+          systems for government and enterprise, mostly with
+          <a href="https://laravel.com" target="_blank" rel="noopener">Laravel</a> and
+          <a href="https://vuejs.org" target="_blank" rel="noopener">Vue.js</a>: performance
+          management, strategic planning and reporting platforms that teams rely on every
+          working day.
+        </p>
+        <p class="rise-in" style="--n: 2">
+          I’m also a digital marketer. I run a lot of
+          <a href="https://www.facebook.com/business/ads" target="_blank" rel="noopener">Meta Ads</a>
+          campaigns across Facebook and Instagram, so I work on both sides: building the
+          product and bringing people to it.
+        </p>
+        <p class="rise-in" style="--n: 3">
+          You can find me on
+          <a href="https://github.com/zhorahmatt" target="_blank" rel="noopener">GitHub</a>
+          and
+          <a href="https://www.linkedin.com/in/rahmathidayatofficial/" target="_blank" rel="noopener">LinkedIn</a>,
+          or reach me by
+          <span class="email-copy" data-email-copy="work.rahmathidayat@gmail.com"
+            ><a class="email-copy__trigger" href="mailto:work.rahmathidayat@gmail.com" data-email-trigger>email</a
+            ><span class="email-copy__tip" aria-hidden="true"
+              ><span class="email-copy__label email-copy__label--copy"
+                ><svg class="icon"><use href="#i-copy" /></svg>Copy email</span
+              ><span class="email-copy__label email-copy__label--copied"
+                ><svg class="icon"><use href="#i-check" /></svg>Copied</span
+              ></span
+            ><span class="sr-only" role="status" data-email-status></span></span
+          >.
+        </p>
+      </div>
+
+      <section id="work" class="section section--work showcase" aria-labelledby="work-title" data-showcase>
+        <div class="section__head rise-in" style="--n: 4">
+          <h2 id="work-title" class="section__title">Selected work</h2>
+          <div class="section__nav">
+            <span class="showcase__count" data-count aria-hidden="true">1 / 10</span>
+            <button type="button" class="nav-button" aria-label="Previous project" data-prev>
+              <svg class="icon"><use href="#i-arrow-left" /></svg>
+            </button>
+            <button type="button" class="nav-button" aria-label="Next project" data-next>
+              <svg class="icon"><use href="#i-arrow-right" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- One project at a time; the strip of thumbnails below picks which.
+             Screenshots live in assets/work/ (960 x 533 WebP). -->
+        <ul class="showcase__stage rise-in" style="--n: 5" data-stage>
+          <li class="showcase__slide" data-slide data-active>
+            <a class="tile" style="--hue: #2f49c8" href="https://esakip.com" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/esakip.webp" alt="Screenshot of the E-SAKIP home page" width="960" height="533" loading="eager" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>Government platform</span>
+                    <span class="tile__link">esakip.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-1" class="tile__name" role="heading" aria-level="3">E-SAKIP</span>
+                  <span class="tile__desc">Online performance accountability system (SAKIP) for local government agencies.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #1f3f9a" href="https://emonev.com" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/emonev.webp" alt="Screenshot of the E-Monev home page" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>Government platform</span>
+                    <span class="tile__link">emonev.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-2" class="tile__name" role="heading" aria-level="3">E-Monev</span>
+                  <span class="tile__desc">Monitoring and evaluation application for government, supporting SPBE implementation.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #c9962a" href="https://pesancinta.my" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/pesan-cinta.webp" alt="Screenshot of the Pesan Cinta workshop landing page" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>Event landing page</span>
+                    <span class="tile__link">pesancinta.my<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-3" class="tile__name" role="heading" aria-level="3">Pesan Cinta</span>
+                  <span class="tile__desc">Landing page for a three-day workshop, with batch schedules and registration.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #2f8a57" href="https://pangkep.kemenag.go.id" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/kemenag-pangkep.webp" alt="Screenshot of the Kemenag Pangkep home page" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>Government website</span>
+                    <span class="tile__link">pangkep.kemenag.go.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-4" class="tile__name" role="heading" aria-level="3">Kemenag Pangkep</span>
+                  <span class="tile__desc">Information and services portal for the Ministry of Religious Affairs office in Pangkep.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <div class="tile tile--static" style="--hue: #4b5cf0">
+                <span class="tile__shot">
+                  <img src="assets/work/cms.webp" alt="Screenshot of the CMS sign-in screen" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>CPM monitoring system</span>
+                  
+                  </span>
+                  <span id="work-5" class="tile__name" role="heading" aria-level="3">CMS</span>
+                  <span class="tile__desc">Monitoring of store visits, verification and programme progress.</span>
+                </span>
+              </div>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #2456e6" href="https://serpul.co.id" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/serpul.webp" alt="Screenshot of the Serpul home page" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>PPOB platform</span>
+                    <span class="tile__link">serpul.co.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-6" class="tile__name" role="heading" aria-level="3">Serpul</span>
+                  <span class="tile__desc">White-label platform for building a branded mobile top-up and bill payment app.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #1f78e0" href="https://kioser.com" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/kioser.webp" alt="Screenshot of the Kioser home page" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>Game top-up store</span>
+                    <span class="tile__link">kioser.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-7" class="tile__name" role="heading" aria-level="3">Kioser</span>
+                  <span class="tile__desc">Game top-up storefront with instant delivery and QRIS payment.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #d99a00" href="https://afila.co.id" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/afila.webp" alt="Screenshot of the Afila home page" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>Company website</span>
+                    <span class="tile__link">afila.co.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-8" class="tile__name" role="heading" aria-level="3">Afila</span>
+                  <span class="tile__desc">Company website for Afila, a digital agency serving government needs.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #159a8c" href="https://dikerja.com" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/dikerja.webp" alt="Screenshot of the Dikerja sign-in screen" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>Government platform</span>
+                    <span class="tile__link">dikerja.com<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-9" class="tile__name" role="heading" aria-level="3">Dikerja</span>
+                  <span class="tile__desc">Attendance and performance reporting for civil servants, on web and mobile.</span>
+                </span>
+              </a>
+          </li>
+          <li class="showcase__slide" data-slide>
+            <a class="tile" style="--hue: #c2532f" href="https://moovs.thuuba.web.id/" target="_blank" rel="noopener">
+                <span class="tile__shot">
+                  <img src="assets/work/moovs.webp" alt="Screenshot of the Moovs Coffee home page" width="960" height="533" loading="lazy" decoding="async" />
+                </span>
+                <span class="tile__text">
+                  <span class="tile__top">
+                    <span>UI design</span>
+                    <span class="tile__link">moovs.thuuba.web.id<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg><span class="sr-only"> (opens in a new tab)</span></span>
+                  </span>
+                  <span id="work-10" class="tile__name" role="heading" aria-level="3">Moovs Coffee</span>
+                  <span class="tile__desc">UI design for the website of a Makassar coffee chain.</span>
+                </span>
+              </a>
+          </li>
+        </ul>
+
+        <div class="showcase__strip rise-in" style="--n: 6" role="group" aria-label="Choose a project">
+          <button type="button" class="showcase__thumb" style="--hue: #2f49c8" aria-label="E-SAKIP" aria-current="true" data-thumb>
+            <img src="assets/work/esakip.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #1f3f9a" aria-label="E-Monev" aria-current="false" data-thumb>
+            <img src="assets/work/emonev.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #c9962a" aria-label="Pesan Cinta" aria-current="false" data-thumb>
+            <img src="assets/work/pesan-cinta.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #2f8a57" aria-label="Kemenag Pangkep" aria-current="false" data-thumb>
+            <img src="assets/work/kemenag-pangkep.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #4b5cf0" aria-label="CMS" aria-current="false" data-thumb>
+            <img src="assets/work/cms.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #2456e6" aria-label="Serpul" aria-current="false" data-thumb>
+            <img src="assets/work/serpul.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #1f78e0" aria-label="Kioser" aria-current="false" data-thumb>
+            <img src="assets/work/kioser.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #d99a00" aria-label="Afila" aria-current="false" data-thumb>
+            <img src="assets/work/afila.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #159a8c" aria-label="Dikerja" aria-current="false" data-thumb>
+            <img src="assets/work/dikerja.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+          <button type="button" class="showcase__thumb" style="--hue: #c2532f" aria-label="Moovs Coffee" aria-current="false" data-thumb>
+            <img src="assets/work/moovs.webp" alt="" width="960" height="533" loading="lazy" decoding="async" />
+          </button>
+        </div>
+      </section>
+
+      <section id="services" class="section" aria-labelledby="services-title" data-reveal>
+        <div class="section__head">
+          <h2 id="services-title" class="section__title">What I do</h2>
+          <p class="section__meta">6 areas</p>
+        </div>
+        <ul class="rows">
+          <li class="row">
+            <span class="row__main">
+              <span class="row__title">Full-Stack Development</span>
+              <span class="row__sub">From database design to responsive interfaces</span>
+            </span>
+            <span class="row__meta">Laravel · Vue.js</span>
+          </li>
+          <li class="row">
+            <span class="row__main">
+              <span class="row__title">Government Platforms</span>
+              <span class="row__sub">Performance management, strategic planning and reporting</span>
+            </span>
+            <span class="row__meta">Public sector</span>
+          </li>
+          <li class="row">
+            <span class="row__main">
+              <span class="row__title">System Architecture</span>
+              <span class="row__sub">Scalable, maintainable systems and infrastructure planning</span>
+            </span>
+            <span class="row__meta">APIs · Databases</span>
+          </li>
+          <li class="row">
+            <span class="row__main">
+              <span class="row__title">Technical Consultation</span>
+              <span class="row__sub">Code review, performance audits and technical strategy</span>
+            </span>
+            <span class="row__meta">Existing apps</span>
+          </li>
+          <li class="row">
+            <span class="row__main">
+              <span class="row__title">Legacy Modernization</span>
+              <span class="row__sub">Incremental migrations, framework upgrades and dependency care</span>
+            </span>
+            <span class="row__meta">Strangler pattern</span>
+          </li>
+          <li class="row">
+            <span class="row__main">
+              <span class="row__title">Digital Marketing</span>
+              <span class="row__sub">Paid campaigns on Facebook and Instagram</span>
+            </span>
+            <span class="row__meta">Meta Ads</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section quotes" aria-labelledby="beliefs-title" data-quotes data-reveal>
+        <div class="section__head">
+          <h2 id="beliefs-title" class="section__title">What I believe</h2>
+          <div class="section__nav">
+            <span class="quotes__count" data-count aria-hidden="true">1 / 2</span>
+            <button type="button" class="nav-button" aria-label="Previous statement" data-prev>
+              <svg class="icon"><use href="#i-arrow-left" /></svg>
+            </button>
+            <button type="button" class="nav-button" aria-label="Next statement" data-next>
+              <svg class="icon"><use href="#i-arrow-right" /></svg>
+            </button>
+          </div>
+        </div>
+        <div class="quotes__stage" aria-live="polite">
+          <figure class="quote" data-slide data-active>
+            <blockquote class="quote__text">
+              Good software is invisible. It just works, reliably, at scale, without getting in
+              the way.
+            </blockquote>
+            <figcaption class="quote__by">
+              <span class="avatar" aria-hidden="true">rh</span>
+              <span><b>Rahmat Hidayat</b> · On building software</span>
+            </figcaption>
+          </figure>
+          <figure class="quote" data-slide>
+            <blockquote class="quote__text">
+              Off the clock I’m thinking about architecture, exploring new technologies and
+              contributing to the developer community.
+            </blockquote>
+            <figcaption class="quote__by">
+              <span class="avatar" aria-hidden="true">rh</span>
+              <span><b>Rahmat Hidayat</b> · Off the clock</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="tools-title" data-reveal>
+        <div class="section__head">
+          <h2 id="tools-title" class="section__title">Tools I use</h2>
+        </div>
+        <!-- Brand marks from the Iconify "logos" set (CC0), saved in assets/tools/. -->
+        <ul class="tools">
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/laravel.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Laravel</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/vue.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Vue.js</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/react.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>React</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/nextjs-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Next.js</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/typescript-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>TypeScript</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/go.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Go</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/postgresql.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>PostgreSQL</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/supabase-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Supabase</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/redis.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Redis</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/docker-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Docker</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/tailwindcss-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Tailwind CSS</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><svg class="icon"><use href="#i-braces" /></svg></span>REST API</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/git-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Git</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/claude-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Claude</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/openai-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>ChatGPT</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><img src="assets/tools/grok-icon.svg" alt="" width="12" height="12" loading="lazy" decoding="async" /></span>Grok</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><svg class="icon"><use href="#i-bot" /></svg></span>Open Bot</span><span aria-hidden="true">&nbsp;·&nbsp;</span></li>
+          <li><span class="tool"><span class="tool__icon" aria-hidden="true"><svg class="icon"><use href="#i-megaphone" /></svg></span>Meta Ads</span></li>
+        </ul>
+      </section>
+
+      <footer class="footer">© 2026 Rahmat Hidayat · Indonesia</footer>
+    </main>
+
+    <!-- Contact dock (800px and wider). Narrower screens use the links in the intro. -->
+    <div class="contact" data-contact data-state="closed">
+      <button type="button" class="contact__avatar" aria-label="Contact Rahmat" aria-expanded="false" aria-controls="contact-card" data-contact-avatar>
+        <span class="contact__ring"></span>
+        <span class="avatar" aria-hidden="true">rh</span>
+      </button>
+      <span class="contact__bridge" aria-hidden="true"></span>
+      <div class="contact__pop">
+        <span class="contact__plate" aria-hidden="true"></span>
+        <div id="contact-card" class="contact__card" role="group" aria-label="Contact Rahmat">
+          <div class="contact__intro">
+            <div class="contact__who contact__piece" style="--i: 0">
+              <span class="avatar" aria-hidden="true">rh</span>
+              <span class="contact__who-text">
+                <span class="contact__name">Rahmat Hidayat</span>
+                <span class="contact__role">Software Engineer &amp; Digital Marketer</span>
+              </span>
+            </div>
+            <span class="contact__status contact__piece" style="--i: 1">Currently at Thuuba Digital</span>
+          </div>
+          <div class="contact__actions">
+            <a class="contact__write contact__piece" style="--i: 2" href="mailto:work.rahmathidayat@gmail.com">
+              <svg class="icon"><use href="#i-send" /></svg>Write a message
+            </a>
+            <p class="contact__or contact__piece" style="--i: 3">
+              or email <a href="mailto:work.rahmathidayat@gmail.com">work.rahmathidayat@gmail.com</a>
+            </p>
+          </div>
+          <div class="contact__rule"></div>
+          <div class="contact__bar" data-contact-bar>
+            <a class="contact__item" style="--i: 0" href="mailto:work.rahmathidayat@gmail.com" aria-label="Email" title="Email">
+              <svg class="icon"><use href="#i-mail" /></svg>
+            </a>
+            <a class="contact__item" style="--i: 1" href="https://github.com/zhorahmatt" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+              <svg class="icon"><use href="#i-github" /></svg>
+            </a>
+            <a class="contact__item" style="--i: 2" href="https://www.linkedin.com/in/rahmathidayatofficial/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+              <svg class="icon"><use href="#i-linkedin" /></svg>
+            </a>
+            <span class="contact__divider" aria-hidden="true"></span>
+            <button type="button" class="contact__item" style="--i: 3" aria-label="Open contact card" title="Contact card" aria-expanded="false" aria-controls="contact-card" data-contact-toggle>
+              <span class="contact__swap contact__swap--open"><svg class="icon"><use href="#i-user" /></svg></span>
+              <span class="contact__swap contact__swap--close"><svg class="icon"><use href="#i-close" /></svg></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

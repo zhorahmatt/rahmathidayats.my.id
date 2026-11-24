@@ -1,0 +1,778 @@
+/* ==========================================================================
+   Page grid: one 600px text column, centred.
+   ========================================================================== */
+
+.page {
+  display: grid;
+  grid-template-columns:
+    minmax(var(--gutter), 1fr)
+    [content-start] min(var(--content), 100% - 2 * var(--gutter))
+    [content-end] minmax(var(--gutter), 1fr);
+  padding-block: 48px 128px;
+}
+
+.page > * {
+  grid-column: content;
+  min-width: 0;
+}
+
+.section {
+  margin-top: 64px;
+  scroll-margin-top: 24px;
+}
+
+.section--work {
+  margin-top: 80px;
+}
+
+.section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 32px;
+}
+
+.section__title {
+  font-size: var(--text-small);
+  color: var(--fg-2);
+}
+
+.section__meta {
+  font-size: var(--text-small);
+  color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.section__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  color: var(--fg-2);
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out;
+}
+
+/* Bigger tap target than the visible circle. */
+.nav-button::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.nav-button:hover {
+  background: var(--bg-hover);
+  color: var(--fg);
+}
+
+.nav-button:disabled {
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding-top: 144px;
+  }
+
+  .section {
+    margin-top: 96px;
+  }
+
+  .section--work {
+    margin-top: 120px;
+  }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: var(--bg-inverse) center / cover no-repeat;
+  color: var(--fg-inverse);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  user-select: none;
+}
+
+.avatar--hero {
+  outline: 2px solid var(--bg);
+  outline-offset: -1px;
+  box-shadow: var(--shadow-avatar);
+}
+
+.hero__text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Light / dark switch at the end of the header row. */
+.theme-toggle {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+html:not(.js) .theme-toggle {
+  display: none;
+}
+
+/* On phones the role line needs the full row, so the switch sits in the
+   page's top margin instead. */
+@media (max-width: 479px) {
+  .hero {
+    position: relative;
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: -40px;
+    right: -6px;
+  }
+}
+
+.theme-toggle__icon {
+  position: absolute;
+  transition:
+    opacity 0.25s var(--ease-out),
+    scale 0.25s var(--ease-out),
+    rotate 0.25s var(--ease-out),
+    filter 0.25s var(--ease-out);
+}
+
+/* Light theme shows the moon (go dark); dark theme shows the sun (go light). */
+.theme-toggle__icon--sun,
+:root[data-theme="dark"] .theme-toggle__icon--moon {
+  opacity: 0;
+  filter: blur(3px);
+  scale: 0.3;
+  rotate: -45deg;
+}
+
+:root[data-theme="dark"] .theme-toggle__icon--sun {
+  opacity: 1;
+  filter: none;
+  scale: 1;
+  rotate: 0deg;
+}
+
+.hero__name {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.hero__role {
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+
+/* On narrow phones the role and the place stack, without the dot between. */
+@media (max-width: 479px) {
+  .hero__role > span {
+    display: block;
+  }
+
+  .hero__role > .hero__dot {
+    display: none;
+  }
+}
+
+.intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+  color: var(--fg-2);
+}
+
+.intro p {
+  text-wrap: pretty;
+}
+
+.intro strong {
+  font-weight: 400;
+  color: var(--fg);
+}
+
+.intro a,
+.email-copy__trigger {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--underline);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s var(--ease-out);
+}
+
+.intro a:hover,
+.email-copy__trigger:hover {
+  text-decoration-color: var(--fg);
+}
+
+.intro a:active,
+.email-copy__trigger:active {
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    gap: 16px;
+  }
+
+  .avatar--hero {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    font-size: 21px;
+  }
+
+  .intro {
+    margin-top: 48px;
+  }
+}
+
+/* Email: hover shows a small pill, click copies the address. */
+.email-copy {
+  position: relative;
+  display: inline-block;
+}
+
+.email-copy__tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 10;
+  display: grid;
+  align-items: center;
+  height: 32px;
+  padding-inline: 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-float);
+  font-size: var(--text-small);
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  translate: -50% 4px;
+  scale: 0.96;
+  transition:
+    opacity 0.15s var(--ease-out),
+    translate 0.2s var(--ease-out),
+    scale 0.2s var(--ease-out);
+}
+
+.email-copy:hover .email-copy__tip,
+.email-copy:focus-within .email-copy__tip,
+.email-copy.is-copied .email-copy__tip {
+  opacity: 1;
+  translate: -50% 0;
+  scale: 1;
+}
+
+.email-copy__label {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--fg);
+  transition:
+    opacity 0.2s var(--ease-out),
+    filter 0.2s var(--ease-out),
+    scale 0.2s var(--ease-out);
+}
+
+.email-copy__label .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.email-copy__label--copied {
+  color: var(--success-text);
+}
+
+.email-copy__label--copied,
+.email-copy.is-copied .email-copy__label--copy {
+  opacity: 0;
+  filter: blur(3px);
+  scale: 0.9;
+}
+
+.email-copy.is-copied .email-copy__label--copied {
+  opacity: 1;
+  filter: none;
+  scale: 1;
+}
+
+@media (hover: none) {
+  .email-copy:not(.is-copied) .email-copy__tip {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Selected work: one project at a time inside the text column, with a strip
+   of thumbnails underneath to pick from. Each tile is a screenshot over a
+   short caption, tinted with the project's own colour (--hue, set inline).
+   ========================================================================== */
+
+.showcase__count {
+  font-size: var(--text-meta);
+  color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.showcase__stage {
+  display: grid;
+  margin-top: 12px;
+}
+
+.showcase__slide {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+/* With JS the projects stack and cross-fade; without it they simply list. */
+.js .showcase__slide {
+  transition:
+    opacity 0.35s var(--ease-out),
+    filter 0.35s var(--ease-out),
+    scale 0.35s var(--ease-out),
+    visibility 0s;
+}
+
+.js .showcase__slide:not([data-active]) {
+  visibility: hidden;
+  opacity: 0;
+  filter: blur(6px);
+  scale: 0.985;
+  transition-delay: 0s, 0s, 0s, 0.35s;
+}
+
+html:not(.js) .showcase__slide {
+  grid-area: auto;
+}
+
+html:not(.js) .showcase__stage {
+  gap: 12px;
+}
+
+html:not(.js) .showcase__strip,
+html:not(.js) .showcase .section__nav {
+  display: none;
+}
+
+.showcase__strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.showcase__thumb {
+  position: relative;
+  aspect-ratio: 960 / 533;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--bg-muted);
+  opacity: 0.5;
+  transition:
+    opacity 0.2s ease-out,
+    box-shadow 0.2s ease-out;
+}
+
+.showcase__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.showcase__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.showcase__thumb:hover {
+  opacity: 0.85;
+}
+
+/* The chosen one is fully lit and ringed in its project colour. */
+.showcase__thumb[aria-current="true"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 2px var(--bg),
+    0 0 0 3.5px color-mix(in srgb, var(--hue) 75%, var(--fg));
+}
+
+.showcase__thumb:focus-visible {
+  opacity: 1;
+  border-radius: 6px;
+}
+
+@media (min-width: 560px) {
+  .showcase__strip {
+    grid-template-columns: repeat(10, 1fr);
+  }
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--hue) var(--tint-bg), var(--bg));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hue) var(--tint-ring), transparent);
+  transition: background-color 0.3s var(--ease-out);
+}
+
+a.tile:hover {
+  background: color-mix(in srgb, var(--hue) var(--tint-bg-hover), var(--bg));
+}
+
+a.tile:focus-visible {
+  border-radius: 16px;
+}
+
+.tile__shot {
+  position: relative;
+  display: block;
+  aspect-ratio: 960 / 533;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--bg-muted);
+}
+
+.tile__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  transition: scale 0.4s var(--ease-out);
+}
+
+a.tile:hover .tile__shot img {
+  scale: 1.03;
+}
+
+/* Hairline over the screenshot, so light pages do not bleed into the tile. */
+.tile__shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--ring);
+  pointer-events: none;
+}
+
+.tile__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 8px 10px;
+}
+
+.tile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--text-meta);
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+
+.tile__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  white-space: nowrap;
+  transition: color 0.15s ease-out;
+}
+
+.tile__link .icon {
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  transition: translate 0.25s var(--ease-out);
+}
+
+a.tile:hover .tile__link {
+  color: var(--fg);
+}
+
+a.tile:hover .tile__link .icon {
+  translate: 1.5px -1.5px;
+}
+
+.tile__name {
+  margin-top: 2px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.tile__desc {
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   What I do: plain rows
+   ========================================================================== */
+
+.rows {
+  margin-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: baseline;
+  gap: 2px;
+  padding-block: 12px;
+  line-height: 1.5;
+}
+
+.row + .row {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.row__main {
+  display: flex;
+  flex-direction: column;
+}
+
+.row__title {
+  font-weight: 500;
+  text-wrap: pretty;
+}
+
+.row__sub {
+  font-size: var(--text-small);
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+.row__meta {
+  font-size: var(--text-meta);
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+  }
+}
+
+/* ==========================================================================
+   What I believe: one statement at a time
+   ========================================================================== */
+
+.quotes__count {
+  font-size: var(--text-meta);
+  color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.quotes__stage {
+  display: grid;
+  margin-top: 16px;
+}
+
+.quote {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.quote__text {
+  font-size: var(--text-large);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.quote__by {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-small);
+  color: var(--fg-2);
+}
+
+.quote__by .avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.quote__by b {
+  font-weight: 400;
+  color: var(--fg);
+}
+
+/* With JS the statements stack and cross-fade; without it they just list. */
+.js .quote {
+  transition:
+    opacity 0.3s var(--ease-out),
+    filter 0.3s var(--ease-out),
+    translate 0.3s var(--ease-out),
+    visibility 0s;
+}
+
+.js .quote:not([data-active]) {
+  visibility: hidden;
+  opacity: 0;
+  filter: blur(4px);
+  translate: 0 6px;
+  transition-delay: 0s, 0s, 0s, 0.3s;
+}
+
+html:not(.js) .quote {
+  grid-area: auto;
+}
+
+html:not(.js) .quotes__stage {
+  gap: 32px;
+}
+
+html:not(.js) .quotes .section__nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .quote__text {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .quote,
+  .js .showcase__slide,
+  .showcase__thumb,
+  .tile,
+  .tile__shot img,
+  .tile__link .icon {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Tools
+   ========================================================================== */
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  margin-top: 16px;
+  color: var(--fg-2);
+}
+
+.tools li {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+  transition: color 0.15s ease-out;
+}
+
+.tool:hover {
+  color: var(--fg);
+}
+
+.tool__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 0 0.75px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.tool__icon img,
+.tool__icon svg {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+}
+
+/* The icon tile stays white in both themes, so its glyph stays dark. */
+.tool__icon svg {
+  color: #0a0a0a;
+  stroke-width: 2.25;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-meta);
+  color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    margin-top: 120px;
+  }
+}
