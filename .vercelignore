@@ -1,8 +1,8 @@
-# Not part of the published site
+# Not needed to build the site. Only dist/ is published.
 ANALYSIS.md
-scripts
-package.json
 archive
 .rea
 .claude
 .vite
+dist
+node_modules

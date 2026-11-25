@@ -1,11 +1,19 @@
 {
   "name": "rahmathidayats.my.id",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
-  "description": "Static one-page portfolio of Rahmat Hidayat.",
+  "description": "Portfolio and blog of Rahmat Hidayat. Static files plus a small Markdown build.",
   "scripts": {
-    "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && python3 -m http.server 4173 --bind 127.0.0.1 --directory dist",
     "contributions": "python3 scripts/update-contributions.py",
     "og": "sh scripts/render-og.sh"
+  },
+  "dependencies": {
+    "marked": "^18.3.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
   }
 }

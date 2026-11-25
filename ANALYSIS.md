@@ -1,7 +1,8 @@
 # rahmathidayats.my.id — how this site is built
 
-Static one-page portfolio. No build step: plain HTML, CSS and native ES modules.
-Run it with `npm run dev` (Python `http.server` on port 4173).
+Static portfolio with a blog. Plain HTML, CSS and native ES modules, plus one small build script
+that turns Markdown posts into pages. Run it with `npm run dev`, which builds into `dist/` and
+serves that folder on port 4173.
 
 ## Where the design comes from (2026-11-24)
 
@@ -82,7 +83,7 @@ in it; run `npm run contributions` and commit the file to refresh it.
 - Open Graph and Twitter card tags point at that image.
 - Structured data is one JSON-LD graph in `index.html`: WebSite, ProfilePage, Person, the two
   organisations and the list of selected work. Keep `dateModified`, the footer's "Updated" date and
-  `sitemap.xml` in step when the content changes.
+  the footer's date in step when the content changes; the build reads the sitemap date from the footer.
 - "About Rahmat Hidayat" is a third-person bio that can be quoted on its own, with a short list of facts.
 - Project names and service names are real `h3` headings.
 - `robots.txt` allows every crawler, AI assistants included. `llms.txt` is a plain summary for AI
@@ -95,14 +96,42 @@ snippet Rahmat supplied. Tags, triggers and any analytics are configured inside 
 repository. There is no consent banner; add one before firing tags that need consent for visitors
 from places that require it.
 
+## Blog and Stories
+
+Posts are Markdown files: `content/blog/*.md` and `content/story/*.md`. To publish one, add the
+file, commit and push. There is no CMS.
+
+```md
+---
+title: My first post
+date: 2026-12-01
+description: One sentence for lists, search results and link previews.
+---
+
+The post starts here.
+```
+
+- The file name is the address: `content/blog/my-first-post.md` becomes `/blog/my-first-post/`.
+  Use lowercase letters, numbers and dashes.
+- `title`, `date` and `description` are required; the build stops with a clear message if one is
+  missing. Optional: `updated: 2026-12-05`, `lang: id` for a post in Indonesian, and
+  `noindex: true` to keep a page out of search engines and the sitemap.
+- The two sample posts are marked `noindex: true`. Delete them when real posts exist.
+- `scripts/build.mjs` writes a page per post, a list page per collection (`/blog/`, `/story/`), the
+  two sections on the home page (newest three each, at the `<!-- build:writing -->` marker in
+  `index.html`) and `sitemap.xml`. `scripts/templates.mjs` holds the HTML; `css/writing.css` the styles.
+- Generated pages reuse the theme script, the Tag Manager snippet and the icons from `index.html`,
+  so those are still edited in one place.
+- A collection with no posts gets no section and no list page.
+
 ## Deploying (Vercel)
 
-The site is plain static files, so Vercel serves the repository root as it is:
-`vercel.json` switches off the install and build steps, adds a few security
-headers and lets screenshots and logos be cached for a day. `.vercelignore`
-keeps this file, `scripts/` and `package.json` out of the published site.
-`robots.txt` and `sitemap.xml` point at https://rahmathidayats.my.id/, the
-address the canonical link also uses.
+Vercel runs `npm install` and `npm run build` on every push and publishes `dist/` (see
+`vercel.json`, which also adds a few security headers and lets screenshots and logos be cached for
+a day). In the Vercel project settings, leave the build and output settings on their defaults so
+`vercel.json` decides. `dist/` and `node_modules/` are not committed.
+
+The one dependency is `marked`, which turns Markdown into HTML.
 
 The contribution graph is a committed snapshot, so it only changes when
 `npm run contributions` is run and the result is pushed.

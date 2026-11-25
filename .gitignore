@@ -8,3 +8,7 @@
 
 # Earlier design attempts, kept locally only
 archive/
+
+# Build output and dependencies
+dist/
+node_modules/

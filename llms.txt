@@ -12,6 +12,8 @@
 ## Pages
 
 - [Home](https://rahmathidayats.my.id/): profile, selected work, services and contact
+- [Blog](https://rahmathidayats.my.id/blog/): notes on building software, AI agents and marketing
+- [Stories](https://rahmathidayats.my.id/story/): stories behind the work
 
 ## Contact
 
