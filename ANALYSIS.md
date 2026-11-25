@@ -88,6 +88,13 @@ in it; run `npm run contributions` and commit the file to refresh it.
 - `robots.txt` allows every crawler, AI assistants included. `llms.txt` is a plain summary for AI
   tools; Google says it ignores the file, so it is there as a courtesy, not a ranking lever.
 
+## Analytics
+
+Google Tag Manager container `GTM-5C7HK23W` is loaded from the `<head>` of `index.html`, using the
+snippet Rahmat supplied. Tags, triggers and any analytics are configured inside GTM, not in this
+repository. There is no consent banner; add one before firing tags that need consent for visitors
+from places that require it.
+
 ## Deploying (Vercel)
 
 The site is plain static files, so Vercel serves the repository root as it is:
