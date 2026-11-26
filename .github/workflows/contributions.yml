@@ -1,0 +1,56 @@
+# Refreshes the GitHub activity graph once a day.
+#
+# Runs scripts/update-contributions.py and commits assets/data/contributions.json
+# when it changed. That push makes Vercel redeploy the site. On a day with no
+# new activity nothing is committed.
+#
+# It can also be started by hand from the Actions tab ("Run workflow").
+
+name: Refresh GitHub activity
+
+on:
+  schedule:
+    # 00:15 in Makassar (16:15 UTC), so the day that just ended is complete.
+    - cron: "15 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contributions
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the contribution calendar
+        run: python3 scripts/update-contributions.py
+
+      - name: Commit if it changed
+        run: |
+          # The file also stores the date it was fetched, which changes every
+          # day. Only commit when the days themselves changed.
+          if git diff --quiet -- assets/data/contributions.json; then
+            echo "No change."
+            exit 0
+          fi
+          if git show HEAD:assets/data/contributions.json \
+               | python3 -c 'import json,sys; old=json.load(sys.stdin)["days"]; new=json.load(open("assets/data/contributions.json"))["days"]; sys.exit(0 if old == new else 1)'; then
+            echo "Only the fetch date changed; nothing to commit."
+            exit 0
+          fi
+          # Credited to the site owner so Vercel deploys it like any other push.
+          git config user.name "zhorahmatt"
+          git config user.email "24467443+zhorahmatt@users.noreply.github.com"
+          git add assets/data/contributions.json
+          git commit -m "Refresh the GitHub activity graph"
+          git push
