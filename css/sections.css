@@ -453,6 +453,14 @@ a.work__card:hover .work__shot img {
   text-wrap: pretty;
 }
 
+/* Long hosts (a preview URL, say) end in an ellipsis instead of pushing the name aside. */
+.work__domain {
+  min-width: 0;
+  max-width: 30ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .work__link {
   grid-area: link;
   display: inline-flex;
